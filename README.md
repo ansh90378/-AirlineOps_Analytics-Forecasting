@@ -184,5 +184,181 @@ The Power BI dashboard displays:
 
 ## 📊 Dashboard Preview
 
-<img width="1701" height="804" alt="image" src="https://github.com/user-attachments/assets/87b0751b-7eae-4141-ab1a-ae19ee68004d" />
+#### Page 1 : Forcast
+<img width="1701" height="804" alt="Image" src="https://github.com/user-attachments/assets/fd15ac20-8437-4b58-b0e5-826c4f6e5c1b" />
 
+#### Page 2 : Operations
+<img width="1701" height="807" alt="Image" src="https://github.com/user-attachments/assets/2db82f53-e60b-4664-9743-2167fa2c5dba" />
+
+> One can download and intract with Dashboard or can access the live Dashboard.
+
+## 🎯 Key Achievements 
+
+### ✔ Gather information from multiple data sources  
+Loaded **airports**, **airlines**, and **flights** datasets and integrated them via Python + Power BI.
+
+### ✔ Identify trends, patterns, and business implications  
+Analyzed delay causes, peak congestion hours, and risk drivers.
+
+### ✔ Automate data processing  
+Python scripts automatically clean, aggregate, and export BI-ready datasets.
+
+### ✔ Produce and track KPIs  
+Created cancellation rate, delay metrics, risk scores, and route-level KPIs.
+
+### ✔ Build dashboards & interactive visualizations  
+Developed a professional Power BI dashboard with drilldowns, maps, and risk heatmaps.
+
+### ✔ Predictive modeling  
+Implemented a Random Forest delay prediction model with explainability.
+
+### ✔ Present insights to business stakeholders  
+Dashboard tells a complete story from **operations → risk → forecasting**.
+
+## 📌 Installation & Setup
+
+### **1. Clone the repository**
+```bash
+git clone https://github.com/your-username/airline-analytics.git
+cd airline-analytics
+
+python -m venv venv          # Create a Virtual Environment
+venv\Scripts\activate        # Windows
+# or
+source venv/bin/activate     # macOS/Linux
+
+```
+
+### **2. Install Python dependencies**
+```bash
+pip install -r requirements.txt
+```
+
+### **3. Run preprocessing**
+```bash
+python analytics_export.py
+```
+
+### **4. Train model**
+```bash
+python train_risk_model.py
+```
+
+### **5. Generate predictions**
+```bash
+python model_predict_full.py
+```
+
+### **6. Run the Python Dashboard**
+Launch the Streamlit dashboard:
+```bash
+streamlit run python/app.py
+```
+
+### **7. Open Power BI Dashboard**
+Load:
+
+```bash
+/PowerBI/Airline_Analyst_dash.pbix
+```
+> Inside Power BI → click Refresh to load the newest processed datasets and risk scores.
+
+
+## 🧩 Key Challenges & How I Solved Them
+
+### ⚠️ 1. Extremely Large Dataset (4M+ flight records)
+Working with DOT flight data required processing millions of rows, which caused performance bottlenecks in both Python and Power BI.
+
+#### ✅ Solution
+- **Chunked Loading in Python:**  
+  Instead of loading the entire dataset into memory, I used pandas chunk processing to stream and clean data in batches.
+- **Pre-aggregated Fact Tables:**  
+  Created `Aggregated_Route`, `Aggregated_Carrier`, and `aggregated_metrics` tables to reduce data volume before modeling.
+- **Optimized Data Types:**  
+  Converted categorical/string columns to category types and reduced datetime precision where appropriate.
+
+These steps **reduced memory usage by ~80%** and enabled smooth processing and visualization.
+
+---
+
+### ⚠️ 2. Many-to-Many Relationships (ROUTE & CARRIER level)
+The original dataset contained repeating route codes and carrier combinations, causing Power BI’s automatic relationship detection to fail.
+
+#### ✅ Solution
+- **Created a DimRoute Dimension Table:**  
+  Extracted unique ROUTE values into a dedicated dimension table, enforcing a clean *1-to-many* relationship.
+- **Implemented a Proper Star Schema:**  
+  Designed the model with:
+  - `clean_flights_for_bi` as the **Fact Table**
+  - Route, Carrier, and Risk Score tables as **Dimensions**
+- **Removed Ambiguous Cross Filters:**  
+  Ensured filters flow *downward* from dimensions → fact table to avoid inconsistent aggregations.
+
+This eliminated ambiguity and enabled stable filtering for the dashboard.
+
+---
+
+### ⚠️ 3. Memory Issues During Model Training
+The Random Forest model initially failed with memory errors when training on 4M rows.
+
+#### ✅ Solution
+- **Feature Pruning:**  
+  Removed non-informative or redundant columns, reducing dimensionality.
+- **Efficient Encodings:**  
+  Used `OrdinalEncoder` + frequency encoding instead of one-hot encoding to dramatically reduce the feature space.
+- **Cardinality Reduction:**  
+  Grouped rare routes and carriers under “Other” categories to stabilize training.
+
+These optimizations allowed the model to train successfully on large, structured aviation datasets.
+
+---
+
+### ⚠️ 4. High Cardinality in ROUTE & AIRPORT Data
+ROUTE was a combination of ORIGIN–DEST pairs, resulting in thousands of unique keys.
+
+#### ✅ Solution
+- Created **route frequency metrics** to encode importance.
+- Applied **domain knowledge** (airport hubs, major carriers) to build meaningful aggregations.
+- Integrated **airport latitude/longitude** to enable geospatial Power BI visuals.
+
+This ensured both machine learning and BI layers worked efficiently with a large categorical space.
+
+---
+
+### ⚠️ 5. Integrating Python Pipeline with Power BI
+Power BI required clean, pre-processed CSVs, but the raw data had missing airport codes, inconsistent carrier labels, and mixed datatypes.
+
+#### ✅ Solution
+- Built a **fully automated Python pipeline** that outputs BI-ready datasets:
+  - Cleaned flight data
+  - Risk scores
+  - Aggregated route/carrier metrics
+- Included validation rules to ensure:
+  - No duplicate dimension keys
+  - Consistent column names
+  - Stable refresh cycles
+
+This made Power BI refreshes **deterministic, fast, and repeatable**.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!  
+If you’d like to improve the data pipeline, enhance the Power BI dashboard, optimize the ML model, or add new analytics modules, feel free to collaborate.
+
+### 🐞 Issues & Feature Requests
+
+If you encounter any bugs, have questions, or want to request a new enhancement:
+
+👉 Create an issue here:
+[https://github.com/your-username/airline-analytics/issues](https://github.com/ansh90378/-AirlineOps_Analytics-Forecasting/issues)
+
+## 📬 Contact
+Ansh
+
+📧 Email: ansh90378@gmail.com
+🔗 LinkedIn: https://www.linkedin.com/in/ansh-chauhan-4430741a9
+
+## 📄 License
+MIT License — Free to use, modify, and share.
