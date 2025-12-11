@@ -1,4 +1,0 @@
-Streamlit
-joblib
-Kaggle
-xgboost
