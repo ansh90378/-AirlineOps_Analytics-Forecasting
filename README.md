@@ -27,7 +27,7 @@ The solution answers critical industry questions:
 
 ---
 
-## 🚀 2. What This Project Can Do
+## 🚀 What This Project Can Do
 
 ### 🔹 Data Engineering
 
@@ -112,6 +112,8 @@ The solution answers critical industry questions:
 └── README.md
 ```
 
+---
+
 # 🚀 Project Workflow (Step-by-Step Execution)
 
 ### 1️⃣ Load & Prepare Raw Data (Kaggle DOT Dataset)
@@ -182,6 +184,8 @@ The Power BI dashboard displays:
   
 > “Create dashboards, graphs, and visualizations to showcase business performance and provide sector benchmarking.
 
+---
+
 ## 📊 Dashboard Preview
 
 #### Page 1 : Forcast
@@ -191,6 +195,8 @@ The Power BI dashboard displays:
 <img width="1701" height="807" alt="Image" src="https://github.com/user-attachments/assets/2db82f53-e60b-4664-9743-2167fa2c5dba" />
 
 > One can download and intract with Dashboard or can access the live Dashboard.
+
+---
 
 ## 🎯 Key Achievements 
 
@@ -214,6 +220,18 @@ Implemented a Random Forest delay prediction model with explainability.
 
 ### ✔ Present insights to business stakeholders  
 Dashboard tells a complete story from **operations → risk → forecasting**.
+
+--- 
+
+## 📥 Dataset Requirements (Download Before Running Python Scripts)
+This project uses the official U.S. DOT Flight Delays Dataset from Kaggle:
+
+🔗 Kaggle Source:
+https://www.kaggle.com/datasets/usdot/flight-delays
+
+You must download the dataset before running any preprocessing or modeling scripts.
+
+---
 
 ## 📌 Installation & Setup
 
