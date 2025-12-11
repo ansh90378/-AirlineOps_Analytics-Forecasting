@@ -1,0 +1,8 @@
+{
+  "opensky_username": "ansh90378",
+  "opensky_password": "Ansh@#$%90378",
+  "target_airports": ["VIDP", "VABB"],
+  "date_from": "2025-10-18",
+  "date_to": "2025-10-22",
+  "schedule_csv": "schedules.csv"
+}

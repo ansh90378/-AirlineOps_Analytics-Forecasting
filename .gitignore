@@ -1,0 +1,19 @@
+# Ignore data files
+data/raw_data/
+data/processed_data/
+
+# Ignore virtual environment
+venv/
+
+# Ignore model binaries
+*.pkl
+
+# Ignore cache
+__pycache__/
+
+# Ignore Excel backups and large csvs
+*.csv
+*.xlsx
+
+# Allow dashboards (.pbix)
+!PowerBI/*.pbix
